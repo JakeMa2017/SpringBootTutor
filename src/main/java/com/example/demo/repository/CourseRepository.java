@@ -43,4 +43,29 @@ public class CourseRepository {
 
         return new ArrayList<Course>();
     }
+
+    public void addCourse(Course course) {
+        courses.add(course);
+    }
+
+    public boolean deleteCourse(String courseName) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (courseName.equals(courses.get(i).getClassName())) {
+                courses.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean updateCourse(Course course) {
+        boolean update = deleteCourse(course.getClassName());
+        if(update) {
+            courses.add(course);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
